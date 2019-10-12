@@ -1,6 +1,6 @@
 #include<Servo.h>
 int pulsePin = A0;                 // Pulse Sensor purple wire connected to analog pin A0
-int blinkPin = 13;                // pin to blink led at each beat
+int blinkPin = 8;                // pin to blink led at each beat
 
 // Volatile Variables, used in the interrupt service routine!
 volatile int BPM;                   // int that holds raw Analog in 0. updated every 2mS

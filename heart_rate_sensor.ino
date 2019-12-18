@@ -1,5 +1,5 @@
-#include<Servo.h>
-int pulsePin = A0;                 // Pulse Sensor purple wire connected to analog pin A0
+#include<Servo.h>                 //Header file to use predefined functions for Servo motor
+int pulsePin = A0;                // Pulse Sensor purple wire connected to analog pin A0
 int blinkPin = 13;                // pin to blink led at each beat
 
 // Volatile Variables, used in the interrupt service routine!
@@ -25,7 +25,7 @@ volatile boolean secondBeat = false;      // used to seed rate array so we start
 
 void setup()
 {
-  servo_test.attach(3);
+  servo_test.attach(3);             // pin that will give control signals to servo motor
   pinMode(blinkPin,OUTPUT);         // pin that will blink to your heartbeat!
   Serial.begin(115200);             // we agree to talk fast!
   interruptSetup();                 // sets up to read Pulse Sensor signal every 2mS
@@ -48,7 +48,7 @@ void loop()
       QS = false; // reset the Quantified Self flag for next time    
     }
      
-  delay(20); //  take a break
+  delay(20); //  take a break (in microseconds)
 }
 
 
@@ -80,12 +80,14 @@ void serialOutputWhenBeatHappens()
    {            
      Serial.print(" Heart-Beat Found ");  //ASCII Art Madness
      Serial.print("BPM: ");
+   
+   //According to values of BPM measured , the attached servo motor is controlled(which is attached to a syringe)
      Serial.println(BPM);
      if(BPM > 120){
-      servo_test.write(90);
+      servo_test.write(90);  // makes angle of servo motor as 90 degree
      }
      else{
-      servo_test.write(4);
+      servo_test.write(4);   // makes angle of servo motor as 4 degree
      }
    }
  else
